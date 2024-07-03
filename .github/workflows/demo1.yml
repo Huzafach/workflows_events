@@ -7,7 +7,7 @@ on:
             - main
             - feat*      # feat new, feat old etc
             - 'dev/**'    # dev/new, dev/new/button
-    workflow_dispatch:
+    # workflow_dispatch:
     push:
         branches:
             - main
@@ -19,12 +19,13 @@ jobs:
         steps:
             - name: Output event data
               run: |
-                  echo "${{ toJSON(github.event) }}"
+                  # echo "${{ toJSON(github.event) }}"
                   test=${{github.sha}}
                   echo $test
             - name: Get code
               uses: actions/checkout@v4
             - name: Install dependencies
+              if: github.event_name == 'push'
               run: npm ci
             - name: Test code
               run: npm run test
