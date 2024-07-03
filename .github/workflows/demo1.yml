@@ -19,7 +19,6 @@ jobs:
         steps:
             - name: Output event data
               run: |
-                  # echo "${{ toJSON(github.event) }}"
                   test=${{github.sha}}
                   echo $test
             - name: Get code
